@@ -1,0 +1,31 @@
+tip: 目前测试以下环境没问题，根据自己环境情况，选择其中之一然后复制粘贴到config.yaml中即可
+
+---
+
+crawler:
+  sql_url: postgresql://postgres:password@localhost:5432/pixiv
+  img_dir: out/imgs
+api:
+  phpsessid: 1145141919810_kfcfkxq4vw50
+  proxy: 127.0.0.1:7890
+log_file: out/out.log
+
+---
+
+crawler:
+  sql_url: mysql+mysqlconnector://root:password@localhost:3306/pixiv
+  img_dir: out/imgs
+api:
+  phpsessid: 1145141919810_kfcfkxq4vw50
+  proxy: 127.0.0.1:7890
+log_file: out/out.log
+
+---
+
+crawler:
+  sql_url: sqlite:///pixiv.db
+  img_dir: out/imgs
+api:
+  phpsessid: 1145141919810_kfcfkxq4vw50
+  proxy: 127.0.0.1:7890
+log_file: out/out.log

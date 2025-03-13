@@ -1,0 +1,5 @@
+parsel
+Pillow
+PyYAML
+Requests
+SQLAlchemy
