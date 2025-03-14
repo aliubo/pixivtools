@@ -1,0 +1,11 @@
+crawler:
+  sql_url: sqlite:///pixiv.db  # For SQLite
+  # sql_url: mysql+mysqlconnector://username:password@localhost:3306/pixiv  # For MySQL
+  # sql_url: postgresql://username:password@localhost:5432/pixiv  # For PostgreSQL
+  # other db url see https://docs.sqlalchemy.org/en/20/core/engines.html
+  img_dir: out/imgs
+api:
+  phpsessid: YOUR_PHPSESSID # Replace with your Pixiv PHPSESSID
+  proxy: null               # if you don't need http proxy, set it to "" or null
+  # proxy: 127.0.0.1:7890   # Replace with your http proxy if needed
+log_file: out/out.log

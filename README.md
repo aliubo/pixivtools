@@ -1,61 +1,63 @@
-# pixiv_crawler
+# pixivtools
 
-爬取pixiv网站的图片，支持多种爬取模式
+[中文文档](README_zh.md)
 
-## 支持爬取功能
+A tool for crawling images from pixiv website, supporting multiple crawling modes
 
-* 按照artwork id下载图片
-* 按照画师id(userid)下载图片
-* 按照pixivision id下载图片(pixvision站)
-* 按照关注的画师最新上传下载图片
-* 按照首页推荐的作品下载图片
-* 按照排行榜下载图片
-* 按照接稿的推荐作品下载图片
-* 按照用户的收藏下载图片
-* 按照指定标签的热门作品下载图片
-* 按照指定的artwork id的相似作品下载图片
-* 按照指定的画师id的所有相似画师下载图片
-* 按照平台推荐的画师下载图片
-* 按照接稿的最新接稿画师下载图片
+## Supported Features
 
-## 使用方法
+* Download images by artwork id
+* Download images by artist id (userid)
+* Download images by pixivision id (pixivision site)
+* Download latest uploads from followed artists
+* Download recommended works from homepage
+* Download images from rankings
+* Download recommended works from commission section
+* Download images from user's bookmarks
+* Download popular works by specified tags
+* Download similar works by specified artwork id
+* Download works from all similar artists of a specified artist id
+* Download works from platform-recommended artists
+* Download works from latest commission artists
 
-### 1、安装pixivtools
+## Usage
+
+### 1. Install pixivtools
 ```shell
 pip install pixivtools --upgrade
 ```
 
-### 2、创建配置对象
+### 2. Create Configuration Object
 
-这里有两种办法可以完成配置的设置，可根据喜好选择
+There are two ways to set up the configuration, choose according to your preference
 
-#### 1) 通过构造器创建
+#### 1) Create through Constructor
 ```python
 import pixivtools
 
 cfg_maker = pixivtools.pixiv_config_maker()
-# 可根据自己需要做调整
-cfg_maker.set_phpsessid("输入pixiv的PHPSESSID")
+# Adjust according to your needs
+cfg_maker.set_phpsessid("Enter your pixiv PHPSESSID")
 cfg_maker.set_proxy("127.0.0.1:7890")
-cfg_maker.set_img_dir("out/imgs")
-cfg_maker.set_sql_url("sqlite:///out/pixiv.db")
-cfg_maker.set_log_file("out/out.log")
+cfg_maker.set_img_dir("./imgs")             # Location to store images
+cfg_maker.set_log_file("./out.log")         # Location for log output
+cfg_maker.set_sql_url("sqlite:///pixiv.db") # SQLAlchemy format connection URL, can be ignored if not understood
 cfg = cfg_maker()
 ```
 
-#### 2) 通过配置文件
-创建一个`config.yaml`文件，配置示例参见仓库的`config.yaml.example`
+#### 2) Through Configuration File
+Create a `config.yaml` file, see `config.yaml.example` in the repository for configuration example
 
-然后 `cfg = pixivtools.load_pixiv_config("config.yaml")`
+Then use `cfg = pixivtools.load_pixiv_config("config.yaml")`
 
 
-### 3. 开始操作
+### 3. Start Operations
 ```python
-# 将上一步得到的cfg对象，传到这里
+# Pass the cfg object obtained from the previous step
 service = pixivtools.new_pixiv_service(cfg)
-# 获取爬虫实例
+# Get crawler instance
 crawler = service.crawler()
-# 不同爬取模式的示例
+# Examples of different crawling modes
 crawler.get_by_artwork_id(98538269)
 crawler.get_by_user_id(23279364)
 crawler.get_by_pixivision_aid(9374)
@@ -71,5 +73,4 @@ crawler.get_by_recommend_user()
 crawler.get_by_request_creator()
 ```
 
-### 4. 爬取完成后，图片会保存到指定路径，数据库会记录所有相关的元信息，可根据自行需求食用
-
+### 4. After crawling is complete, images will be saved to the specified path, and the database will record all related metadata for your use 

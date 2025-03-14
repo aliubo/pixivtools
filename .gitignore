@@ -19,5 +19,5 @@ ENV/
 *.swp
 *.swo
 
-out
-config.yaml
+/out
+/config.yaml
